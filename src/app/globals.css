@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-ink text-white;
+  }
+}
+
+@layer utilities {
+  .label {
+    @apply font-mono text-[10px] tracking-[0.14em] uppercase text-faint;
+  }
+
+  .label-line::after {
+    content: "";
+    @apply flex-1 h-px bg-border;
+  }
+}
