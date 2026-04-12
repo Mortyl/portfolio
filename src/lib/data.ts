@@ -3,14 +3,14 @@ import { Project, NavLink, SocialLink } from "@/types";
 export const siteConfig = {
   name: "Marcus Ortyl",
   initials: "MO",
-  role: "Frontend Developer",
+  role: "Web Developer",
   location: "UK",
   email: "you@email.com",
   tagline: "Building interfaces that feel as good as they look.",
   subheading:
     "Frontend developer with a sharp eye for detail and a bias for clean code.",
   description:
-    "I've spent the last few years working at the intersection of design and engineering — writing TypeScript, building component libraries, and sweating the details that most people miss.",
+    "I've spent the last few years working at the intersection of design and engineering — writing TypeScript, building component libraries, and sweating the details that most people miss.I've spent the last few years working at the intersection of design and engineering — writing TypeScript, building component libraries, and sweating the details that most people miss.I've spent the last few years working at the intersection of design and engineering — writing TypeScript, building component libraries, and sweating the details that most people miss.I've spent the last few years working at the intersection of design and engineering — writing TypeScript, building component libraries, and sweating the details that most people miss.I've spent the last few years working at the intersection of design and engineering — writing TypeScript, building component libraries, and sweating the details that most people miss. ",
   about: [
     "Frontend Developer looking for new opprtunities",
     "Mention the kinds of teams or projects you've worked on, and what you're looking for next. Keep it human, not corporate.",

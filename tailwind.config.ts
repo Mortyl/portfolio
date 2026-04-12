@@ -19,11 +19,6 @@ const config: Config = {
         faint: "#a8a8a8",
         surface: "#f7f7f5",
         border: "#e5e5e2",
-        accent: {
-          DEFAULT: "#2563eb",
-          light: "#eff6ff",
-          muted: "#93c5fd",
-        },
       },
     },
   },
