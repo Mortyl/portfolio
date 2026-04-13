@@ -4,8 +4,16 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
+  image?: string;
   url?: string;
   githubUrl?: string;
+  caseStudy: {
+    overview: string;
+    problem: string;
+    approach: string;
+    decisions: string;
+    learned: string;
+  };
 }
 
 export interface NavLink {
