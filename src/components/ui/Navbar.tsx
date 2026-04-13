@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { navLinks, siteConfig } from "@/lib/data";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   return (
