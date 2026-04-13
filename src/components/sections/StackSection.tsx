@@ -13,8 +13,8 @@ export default function StackSection() {
               key={tech}
               className={`font-mono text-xs px-3 py-1.5 rounded-sm border transition-colors ${
                 isFeatured
-                  ? "border-border text-ink bg-white"
-                  : "border-border text-muted bg-surface"
+                  ? "border-border dark:border-[#333] text-ink dark:text-[#f0ede6] bg-white dark:bg-[#1a1a18]"
+                  : "border-border dark:border-[#2a2a28] text-muted dark:text-[#666] bg-surface dark:bg-[#161614]"
               }`}
             >
               {tech}

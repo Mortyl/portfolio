@@ -13,18 +13,17 @@
     @apply bg-white text-ink font-sans antialiased;
   }
 
+  .dark body {
+    background-color: #111110;
+    color: #f0ede6;
+  }
+
   ::selection {
     @apply bg-ink text-white;
   }
-}
 
-@layer utilities {
-  .label {
-    @apply font-mono text-[10px] tracking-[0.14em] uppercase text-faint;
-  }
-
-  .label-line::after {
-    content: "";
-    @apply flex-1 h-px bg-border;
+  .dark ::selection {
+    background-color: #f0ede6;
+    color: #111110;
   }
 }
