@@ -113,8 +113,6 @@ export const projects: Project[] = [
         "Walk through how you tackled it. What did you build first? How did you structure things? What tools or patterns did you reach for and why?",
       decisions:
         "Talk about a key technical or design decision you made. What were the options? Why did you go the way you did? Were there trade-offs?",
-      decisions:
-        "Talk about a key technical or design decision you made. What were the options? Why did you go the way you did? Were there trade-offs?",
       learned:
         "What did you take away from this project? A new technique, a lesson about scope, something about working with a team or a client?",
     },
