@@ -58,11 +58,11 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Node.js", "Socket.io", "PostgreSQL", "Prisma"],
     image: undefined,
     images: [
-      "/images/LoginScreen.jpg",
-      "/images/CreateAccountScreen.jpg",
-      "/images/BoardHomeScreen.jpg",
-      "/images/BoardIdscreen.jpg",
-      "/images/EditCard.jpg"
+      "/images/taskflow/LoginScreen.jpg",
+      "/images/taskflow/CreateAccountScreen.jpg",
+      "/images/taskflow/BoardHomeScreen.jpg",
+      "/images/taskflow/BoardIdscreen.jpg",
+      "/images/taskflow/EditCard.jpg"
     ],
     url: undefined,
     githubUrl: "https://github.com/Mortyl/task-manager",
@@ -75,26 +75,28 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "PoEProffessor",
+    id: "PoEProfessor",
     number: "02",
-    title: "PoEProfessor",
+    title: "PoEProfessor (beta)",
     description:
-      "In Progress..",
-    tags: ["Angular", "Typescript", "Node.js"],
-    image: undefined,
-    url: "https://example.com",
-    githubUrl: "https://github.com/yourusername/project-beta",
+      "Path of Exile 2's first AI powered companion app — currently being actively developed. Features a build guide generator, interactive passive skill tree visualiser, and a companion feature which uses an expertly hand-written PoE2 knowledge base. Private repository but can give live demo on request.",
+    tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Anthropic", "Canvas API"],
+    images: [
+      "/images/poe-professor/CompanionScreen.jpg",
+    ],
+    url: undefined,
+    githubUrl: undefined,
     caseStudy: {
       overview:
-        "PoEProfessor is a web application linked to the ARPG Path of exile, used to discover builds and view ladder rankings using the PoENinja API among many other things.",
+        "PoEProfessor is a Path of Exile 2 companion web app inspired by Porofessor.gg — currently in active development. It currently features an AI build guide generator, a floating Shaper chat companion powered by Claude, an interactive passive skill tree canvas, and a growing structured knowledge base covering PoE2 mechanics, weapons, classes, and ascendancies. More features are being developed.",
       problem:
-        "",
+        "Path of Exile 2 is an extremely complex ARPG with thousands of different mechanics and builds which can be overwhelming for newer and intermediate players. We are trying to provide a tool which minimises this steep learning curve and encourages build innovation. There is currently no single tool which explains builds, highlights relevant passive nodes, and answers game mechanic questions in context.",
       approach:
-        "",
+        "Built a Next.js frontend with a canvas-based passive skill tree visualiser and a FastAPI Python backend. The AI layer uses Anthropic's Claude API fueled by a hand-curated knowledge base of markdown files. Rather than dumping raw game data at the AI, each file is carefully authored — sifting through patch notes, community resources, and Path of Building data to extract only what is accurate, current, and relevant to the questions being asked.",
       decisions:
-        "",
+        "The key decision was building a file-based knowledge system rather than relying on Claude's training data alone. PoE2 is in Early Access and Claude's training data contains a lot of PoE1 knowledge — without grounding, the AI confidently gives wrong answers. Curating the knowledge base manually means every piece of information the AI uses has been verified against the current patch, keeping responses accurate as the game continues to change.",
       learned:
-        "",
+        "So far this project has taught me how important data collection and prompt grounding is when using LLMs in domain-specific contexts. It's also the first project where I have used Python which has allowed me to improve my skills in a valuable new programming language. I have also used this opportunity to structure a FastAPI backend for AI powered endpoints. One of the bigger features was building a zoomable and pannable passive tree canvas renderer from scratch using the Canvas API.",
     },
   },
   {
