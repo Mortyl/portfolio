@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { projects } from "@/lib/data";
 import SectionLabel from "@/components/ui/SectionLabel";
+import Chip from "@/components/ui/Chip";
 import Image from "next/image";
 
 export default function ProjectsSection() {
@@ -42,12 +43,7 @@ export default function ProjectsSection() {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[10px] tracking-wide text-accent dark:text-accent-muted border border-accent-muted/40 dark:border-[#2a2a3a] bg-accent-light/50 dark:bg-[#1e1b3a] px-2 py-0.5 rounded-sm"
-                >
-                  {tag}
-                </span>
+                <Chip key={tag}>{tag}</Chip>
               ))}
             </div>
           </Link>

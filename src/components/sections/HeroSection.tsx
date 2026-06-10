@@ -38,23 +38,13 @@ export default function HeroSection() {
             <div className="relative w-44 h-44 md:w-52 md:h-52">
               <div className="absolute -bottom-2 -right-2 w-full h-full bg-accent-light dark:bg-[#1e1b3a] border border-accent-muted/40 rounded-sm" />
               <div className="relative w-full h-full rounded-sm overflow-hidden border border-accent-muted/40 dark:border-[#2a2a3a] bg-white dark:bg-[#16152a] z-10">
-                <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-4">
-                  <div className="w-14 h-14 rounded-full bg-accent-light dark:bg-[#1e1b3a] border border-accent-muted flex items-center justify-center">
-                  <span className="font-serif text-xl text-accent dark:text-accent-muted">
-                    {siteConfig.initials}
-                  </span>
-                  </div>
-                  <p className="font-mono text-[10px] tracking-widest text-faint dark:text-[#444] uppercase leading-relaxed">
-                    Add photo.jpg<br />to /public then<br />uncomment Image below
-                  </p>
-                </div>
-              <Image
-                src="/images/programming.png"
-                alt={siteConfig.name}
-                fill
-                className="object-cover object-center"
-                priority
-              />
+                <Image
+                  src="/images/programming.png"
+                  alt={siteConfig.name}
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
               </div>
             </div>
           </div>

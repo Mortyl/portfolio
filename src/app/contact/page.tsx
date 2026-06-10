@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { socialLinks } from "@/lib/data";
-import ThemeToggle from "@/components/ui/ThemeToggle";
+import PageHeader from "@/components/ui/PageHeader";
+import Footer from "@/components/ui/Footer";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -11,6 +10,8 @@ export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  // Honeypot — hidden field; bots fill it, real users never see it.
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -23,7 +24,7 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, website }),
       });
 
       const data = await res.json();
@@ -38,6 +39,7 @@ export default function ContactPage() {
       setName("");
       setEmail("");
       setMessage("");
+      setWebsite("");
     } catch {
       setErrorMsg("Something went wrong. Please try again.");
       setStatus("error");
@@ -46,15 +48,7 @@ export default function ContactPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-6 pb-20">
-      <div className="py-8 mb-12 border-b border-accent-muted/30 dark:border-[#2a2a3a] flex justify-between items-center">
-        <Link
-            href="/"
-            className="font-mono text-[11px] tracking-[0.1em] uppercase text-accent dark:text-accent-muted hover:text-accent-dark transition-colors"
-        >
-          ← Back
-        </Link>
-        <ThemeToggle />
-      </div>
+      <PageHeader />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
@@ -87,11 +81,39 @@ export default function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              {/* Honeypot field — visually hidden from real users via CSS.
+                  Bots scrape the form and fill every input, including this one.
+                  If the field arrives non-empty the API silently drops the submission. */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  width: "1px",
+                  height: "1px",
+                  padding: 0,
+                  margin: "-1px",
+                  overflow: "hidden",
+                  clip: "rect(0, 0, 0, 0)",
+                  whiteSpace: "nowrap",
+                  borderWidth: 0,
+                }}
+              >
+                <label htmlFor="contact-website">Website (leave this blank)</label>
+                <input
+                  id="contact-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
               <div className="flex flex-col gap-1.5">
-                <label className="font-mono text-[10px] tracking-widest uppercase text-accent dark:text-accent-muted">
+                <label htmlFor="contact-name" className="font-mono text-[10px] tracking-widest uppercase text-accent dark:text-accent-muted">
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -101,10 +123,11 @@ export default function ContactPage() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="font-mono text-[10px] tracking-widest uppercase text-accent dark:text-accent-muted">
+                <label htmlFor="contact-email" className="font-mono text-[10px] tracking-widest uppercase text-accent dark:text-accent-muted">
                   Email
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -114,10 +137,11 @@ export default function ContactPage() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="font-mono text-[10px] tracking-widest uppercase text-accent dark:text-accent-muted">
+                <label htmlFor="contact-message" className="font-mono text-[10px] tracking-widest uppercase text-accent dark:text-accent-muted">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
@@ -140,19 +164,7 @@ export default function ContactPage() {
           )}
         </div>
       </div>
-      <footer className="border-t border-accent-muted/30 dark:border-[#2a2a3a] pt-10 mt-16 flex justify-center items-center gap-6 flex-wrap">
-        {socialLinks.map((link) => (
-            <Link
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                className="font-mono text-xs text-muted dark:text-[#666] hover:text-accent dark:hover:text-accent-muted transition-colors border-b border-accent-muted/40 pb-0.5"
-            >
-              {link.label}
-            </Link>
-        ))}
-      </footer>
+      <Footer topMargin="mt-16" />
     </main>
   );
 }

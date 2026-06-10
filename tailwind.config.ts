@@ -10,9 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["DM Serif Display", "serif"],
-        mono: ["DM Mono", "monospace"],
-        sans: ["Outfit", "sans-serif"],
+        // Provided as CSS variables by next/font in app/layout.tsx
+        serif: ["var(--font-serif)", "DM Serif Display", "serif"],
+        mono:  ["var(--font-mono)",  "DM Mono",          "monospace"],
+        sans:  ["var(--font-sans)",  "Outfit",           "sans-serif"],
       },
       colors: {
         ink: "#1a1a1a",

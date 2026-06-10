@@ -1,11 +1,20 @@
 import Link from "next/link";
 import { socialLinks } from "@/lib/data";
 
-export default function ContactSection() {
+interface FooterProps {
+  /** Tailwind margin-top utility (e.g. "mt-16"). Defaults to none. */
+  topMargin?: string;
+}
+
+/**
+ * Shared site footer with social links.
+ * Previously duplicated across the homepage, about, and contact pages.
+ */
+export default function Footer({ topMargin = "" }: FooterProps) {
   return (
     <footer
       id="contact"
-      className="border-t border-accent-muted/30 dark:border-[#2a2a3a] pt-10 flex justify-center items-center gap-6 flex-wrap"
+      className={`border-t border-accent-muted/30 dark:border-[#2a2a3a] pt-10 ${topMargin} flex justify-center items-center gap-6 flex-wrap`}
     >
       <nav className="flex flex-wrap gap-5">
         {socialLinks.map((link) => (

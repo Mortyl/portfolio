@@ -25,22 +25,26 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                     {images.length > 1 && (
                         <>
                             <button
+                                type="button"
+                                aria-label="Previous image"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev - 1 + images.length) % images.length);
                                 }}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#111]/80 hover:bg-white dark:hover:bg-[#111] text-ink dark:text-[#f0ede6] rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-sm"
                             >
-                                ←
+                                <span aria-hidden="true">←</span>
                             </button>
                             <button
+                                type="button"
+                                aria-label="Next image"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev + 1) % images.length);
                                 }}
                                 className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#111]/80 hover:bg-white dark:hover:bg-[#111] text-ink dark:text-[#f0ede6] rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-sm"
                             >
-                                →
+                                <span aria-hidden="true">→</span>
                             </button>
                         </>
                     )}
@@ -51,6 +55,9 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                         {images.map((_, i) => (
                             <button
                                 key={i}
+                                type="button"
+                                aria-label={`Go to image ${i + 1}`}
+                                aria-current={i === current ? "true" : undefined}
                                 onClick={() => setCurrent(i)}
                                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
                                     i === current
@@ -68,33 +75,42 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                 <div
                     className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
                     onClick={() => setLightbox(false)}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${title} screenshot viewer`}
                 >
                     <button
+                        type="button"
+                        aria-label="Close image viewer"
                         onClick={() => setLightbox(false)}
                         className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl transition-colors"
                     >
-                        ✕
+                        <span aria-hidden="true">✕</span>
                     </button>
 
                     {images.length > 1 && (
                         <>
                             <button
+                                type="button"
+                                aria-label="Previous image"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev - 1 + images.length) % images.length);
                                 }}
                                 className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-2xl transition-colors"
                             >
-                                ←
+                                <span aria-hidden="true">←</span>
                             </button>
                             <button
+                                type="button"
+                                aria-label="Next image"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev + 1) % images.length);
                                 }}
                                 className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-2xl transition-colors"
                             >
-                                →
+                                <span aria-hidden="true">→</span>
                             </button>
                         </>
                     )}
@@ -117,6 +133,9 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                             {images.map((_, i) => (
                                 <button
                                     key={i}
+                                    type="button"
+                                    aria-label={`Go to image ${i + 1}`}
+                                    aria-current={i === current ? "true" : undefined}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setCurrent(i);

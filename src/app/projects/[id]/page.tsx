@@ -1,8 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, siteConfig } from "@/lib/data";
 import ImageGallery from "@/components/ui/ImageGallery";
+import PageHeader from "@/components/ui/PageHeader";
+import Chip from "@/components/ui/Chip";
 
 interface Props {
   params: { id: string };
@@ -39,14 +40,7 @@ export default function ProjectPage({ params }: Props) {
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-0 pb-20">
-      <div className="py-8 mb-8 border-b border-accent-muted/30 dark:border-[#2a2a3a]">
-        <Link
-          href="/"
-          className="font-mono text-[11px] tracking-[0.1em] uppercase text-accent dark:text-accent-muted hover:text-accent-dark transition-colors"
-        >
-          ← Back
-        </Link>
-      </div>
+      <PageHeader showThemeToggle={false} marginBottom="mb-8" />
 
       <div className="mb-12">
         <p className="font-mono text-[10px] tracking-widest text-accent/60 dark:text-accent-muted/50 mb-4">
@@ -60,12 +54,7 @@ export default function ProjectPage({ params }: Props) {
         </p>
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="font-mono text-[10px] tracking-wide text-accent dark:text-accent-muted border border-accent-muted/40 bg-accent-light/50 dark:bg-[#1e1b3a] px-2 py-0.5 rounded-sm"
-            >
-              {tag}
-            </span>
+            <Chip key={tag}>{tag}</Chip>
           ))}
         </div>
         <div className="flex gap-5">

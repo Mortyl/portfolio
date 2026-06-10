@@ -1,23 +1,14 @@
-import Link from "next/link";
-import { siteConfig, socialLinks } from "@/lib/data";
+import { siteConfig } from "@/lib/data";
 import SectionLabel from "@/components/ui/SectionLabel";
-import ThemeToggle from "@/components/ui/ThemeToggle";
+import PageHeader from "@/components/ui/PageHeader";
+import Footer from "@/components/ui/Footer";
 import Image from "next/image";
 
 export default function AboutPage() {
     return (
         <main className="max-w-3xl mx-auto px-6 pb-20">
 
-            {/* Header */}
-            <div className="py-8 mb-12 border-b border-accent-muted/30 dark:border-[#2a2a3a] flex justify-between items-center">
-                <Link
-                    href="/"
-                    className="font-mono text-[11px] tracking-[0.1em] uppercase text-accent dark:text-accent-muted hover:text-accent-dark transition-colors"
-                >
-                    ← Back
-                </Link>
-                <ThemeToggle />
-            </div>
+            <PageHeader />
 
             {/* Intro */}
             <div className="mb-16">
@@ -89,20 +80,7 @@ export default function AboutPage() {
 
             </div>
 
-            {/* Footer links */}
-            <footer className="border-t border-accent-muted/30 dark:border-[#2a2a3a] pt-10 flex justify-center items-center gap-6 flex-wrap">
-                {socialLinks.map((link) => (
-                    <Link
-                        key={link.label}
-                        href={link.href}
-                        target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                        rel="noopener noreferrer"
-                        className="font-mono text-xs text-muted dark:text-[#666] hover:text-accent dark:hover:text-accent-muted transition-colors border-b border-accent-muted/40 pb-0.5"
-                    >
-                        {link.label}
-                    </Link>
-                ))}
-            </footer>
+            <Footer />
 
         </main>
     );

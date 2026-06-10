@@ -23,9 +23,9 @@ export default function ThemeToggle() {
                     : "bg-surface border-border"
             }`}
         >
-            {/* Track icons */}
-            <span className="absolute left-1.5 text-[9px]">🌙</span>
-            <span className="absolute right-1.5 text-[9px]">☀️</span>
+            {/* Track icons — decorative; the button already has aria-label */}
+            <span aria-hidden="true" className="absolute left-1.5 text-[9px]">🌙</span>
+            <span aria-hidden="true" className="absolute right-1.5 text-[9px]">☀️</span>
 
             {/* Thumb */}
             <span

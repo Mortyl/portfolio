@@ -34,6 +34,7 @@ export const stack: string[] = [
   "Next.js",
   "React",
   "Node.js",
+  "Python",
   "REST APIs",
   "Git & GitHub",
   "PostgreSQL",
@@ -41,13 +42,12 @@ export const stack: string[] = [
   "HTML/CSS",
   "TailwindCSS",
   "Vercel",
-  "Python",
   "Socket.io",
   "Prisma",
   "Kubernetes basics",
 ];
 
-export const featuredStack = ["Next.js", "TypeScript/Javascript", "React", "Node.js"];
+export const featuredStack = ["Next.js", "TypeScript/Javascript", "React", "Node.js", "Python"];
 
 export const projects: Project[] = [
   {
@@ -75,14 +75,19 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "PoEProfessor",
+    id: "poe-professor",
     number: "02",
     title: "PoEProfessor (beta)",
     description:
       "Path of Exile 2's first AI powered companion app — currently being actively developed. Features a build guide generator, interactive passive skill tree visualiser, and a companion feature which uses an expertly hand-written PoE2 knowledge base. Private repository but can give live demo on request.",
-    tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Anthropic", "Canvas API"],
+    tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Anthropic", "OAuth"],
     images: [
-      "/images/poe-professor/CompanionScreen.jpg",
+      "/images/poe-professor/builds.jpg",
+      "/images/poe-professor/passivetree.jpg",
+      "/images/poe-professor/ascendancyTree.jpg",
+      "/images/poe-professor/gearrecommendations.jpg",
+      "/images/poe-professor/tierList.jpg",
+      "/images/poe-professor/login.jpg",
     ],
     url: undefined,
     githubUrl: undefined,
@@ -96,7 +101,7 @@ export const projects: Project[] = [
       decisions:
         "The key decision was building a file-based knowledge system rather than relying on Claude's training data alone. PoE2 is in Early Access and Claude's training data contains a lot of PoE1 knowledge — without grounding, the AI confidently gives wrong answers. Curating the knowledge base manually means every piece of information the AI uses has been verified against the current patch, keeping responses accurate as the game continues to change.",
       learned:
-        "So far this project has taught me how important data collection and prompt grounding is when using LLMs in domain-specific contexts. It's also the first project where I have used Python which has allowed me to improve my skills in a valuable new programming language. I have also used this opportunity to structure a FastAPI backend for AI powered endpoints. One of the bigger features was building a zoomable and pannable passive tree canvas renderer from scratch using the Canvas API.",
+        "So far this project has taught me how important data collection and prompt grounding is when using LLMs in domain-specific contexts. It's also the first project where I have used Python which has allowed me to improve my skills in a valuable new programming language. I have also used this opportunity to structure a FastAPI backend for AI powered endpoints. One of the bigger features was building a zoomable and pannable passive tree canvas renderer from scratch.",
     },
   },
   {
@@ -105,10 +110,10 @@ export const projects: Project[] = [
     title: "Project Gamma",
     description:
       "Coming Soon.",
-    tags: ["TypeScript", "Python", "MongoDB"],
+    tags: [],
     image: undefined,
-    url: "https://example.com",
-    githubUrl: "https://github.com/yourusername/project-gamma",
+    url: undefined,
+    githubUrl: undefined,
     caseStudy: {
       overview:
         "TBA",

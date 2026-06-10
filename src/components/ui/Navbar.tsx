@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { navLinks, siteConfig } from "@/lib/data";
 import ThemeToggle from "./ThemeToggle";
