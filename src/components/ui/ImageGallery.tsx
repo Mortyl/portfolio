@@ -3,6 +3,29 @@
 import { useState } from "react";
 import Image from "next/image";
 
+function Chevron({ direction, size = 16 }: { direction: "left" | "right"; size?: number }) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            width={size}
+            height={size}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            className={`transition-transform duration-200 ${
+                direction === "left"
+                    ? "group-hover/nav:-translate-x-0.5"
+                    : "group-hover/nav:translate-x-0.5"
+            }`}
+        >
+            {direction === "left" ? <path d="M15 18l-6-6 6-6" /> : <path d="M9 6l6 6-6 6" />}
+        </svg>
+    );
+}
+
 export default function ImageGallery({ images, title }: { images: string[]; title: string }) {
     const [current, setCurrent] = useState(0);
     const [lightbox, setLightbox] = useState(false);
@@ -31,9 +54,9 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev - 1 + images.length) % images.length);
                                 }}
-                                className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#111]/80 hover:bg-white dark:hover:bg-[#111] text-ink dark:text-[#f0ede6] rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-sm"
+                                className="group/nav absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-sm border border-ink/10 dark:border-white/10 bg-white/70 dark:bg-[#16152a]/70 backdrop-blur-md shadow-sm text-ink/70 dark:text-[#f0ede6]/80 hover:text-accent dark:hover:text-accent-muted hover:border-accent/40 dark:hover:border-accent-muted/40 hover:bg-white/90 dark:hover:bg-[#16152a]/90 active:scale-95 transition-all duration-200"
                             >
-                                <span aria-hidden="true">←</span>
+                                <Chevron direction="left" />
                             </button>
                             <button
                                 type="button"
@@ -42,9 +65,9 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev + 1) % images.length);
                                 }}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#111]/80 hover:bg-white dark:hover:bg-[#111] text-ink dark:text-[#f0ede6] rounded-full w-8 h-8 flex items-center justify-center transition-colors shadow-sm"
+                                className="group/nav absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-sm border border-ink/10 dark:border-white/10 bg-white/70 dark:bg-[#16152a]/70 backdrop-blur-md shadow-sm text-ink/70 dark:text-[#f0ede6]/80 hover:text-accent dark:hover:text-accent-muted hover:border-accent/40 dark:hover:border-accent-muted/40 hover:bg-white/90 dark:hover:bg-[#16152a]/90 active:scale-95 transition-all duration-200"
                             >
-                                <span aria-hidden="true">→</span>
+                                <Chevron direction="right" />
                             </button>
                         </>
                     )}
@@ -97,9 +120,9 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev - 1 + images.length) % images.length);
                                 }}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-2xl transition-colors"
+                                className="group/nav absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-sm border border-white/15 bg-white/5 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/40 hover:bg-white/10 active:scale-95 transition-all duration-200"
                             >
-                                <span aria-hidden="true">←</span>
+                                <Chevron direction="left" size={18} />
                             </button>
                             <button
                                 type="button"
@@ -108,9 +131,9 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev + 1) % images.length);
                                 }}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-2xl transition-colors"
+                                className="group/nav absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-sm border border-white/15 bg-white/5 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/40 hover:bg-white/10 active:scale-95 transition-all duration-200"
                             >
-                                <span aria-hidden="true">→</span>
+                                <Chevron direction="right" size={18} />
                             </button>
                         </>
                     )}
