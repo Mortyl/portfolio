@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, siteConfig } from "@/lib/data";
+import { projects } from "@/lib/data";
 import ImageGallery from "@/components/ui/ImageGallery";
 import PageHeader from "@/components/ui/PageHeader";
 import Chip from "@/components/ui/Chip";
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
   const project = projects.find((p) => p.id === params.id);
   if (!project) return {};
   return {
-    title: `${project.title} — ${siteConfig.name}`,
+    title: project.title,
     description: project.description,
   };
 }
