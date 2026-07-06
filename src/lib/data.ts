@@ -51,8 +51,56 @@ export const featuredStack = ["Next.js", "TypeScript/Javascript", "React", "Node
 
 export const projects: Project[] = [
   {
-    id: "ai-dungeon-master",
+    id: "vela",
     number: "01",
+    title: "Vela",
+    description:
+      "A complete fashion e-commerce store — catalogue with colour and size variants and live stock, cart, Stripe checkout, customer accounts, and a role-gated admin back-office. Rounded out with reviews, coupons, AI-written summaries, a full test suite, CI, and a Dockerised Postgres deploy. Live demo available.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+      "Stripe",
+      "Auth.js",
+      "Anthropic",
+      "Vitest",
+      "Playwright",
+      "GitHub Actions",
+      "Docker",
+      "Vercel",
+    ],
+    image: undefined,
+    images: [
+      "/images/vela/home.jpg",
+      "/images/vela/shop.jpg",
+      "/images/vela/product.jpg",
+      "/images/vela/cart.jpg",
+      "/images/vela/checkout.jpg",
+      "/images/vela/admin-dashboard.jpg",
+      "/images/vela/admin-products.jpg",
+      "/images/vela/admin-orders.jpg",
+    ],
+    url: "https://ecommercestore-174h-gray.vercel.app",
+    githubUrl: "https://github.com/Mortyl/ecommercestore",
+    caseStudy: {
+      overview:
+        "Vela is a full fashion storefront built to mirror a real commercial app end to end: a catalogue with colour and size variants and live stock, a cart, Stripe Checkout, customer accounts with order history, and a role-gated admin back-office for orders, inventory, products and coupons. On top of that it ships verified-purchase reviews, discount codes, AI-written review summaries, a unit and end-to-end test suite, CI, and a Dockerised Postgres deployment. It runs on Next.js 16 and TypeScript with Prisma, and is live on Vercel.",
+      problem:
+        "I wanted one project that shows the full surface of a real e-commerce build rather than a toy shop — money handling, authentication and authorization, an admin surface, and the testing and deployment discipline around it. The parts that matter are the ones easy to fake: prices that can't be tampered with from the client, an admin that visitors genuinely can't reach, and a checkout that stays consistent even if the customer never lands back on the success page.",
+      approach:
+        "The storefront is Next.js 16 with server actions, Tailwind 4 and Prisma — SQLite in development, Postgres in production. Auth is Auth.js with credentials, JWT sessions and bcrypt, with an ADMIN role gating the back-office. Checkout reprices the bag server-side from the database and hands off to Stripe Checkout, and coupons are validated server-side. A cached, Anthropic-powered review summary is the one AI feature, and the whole thing is covered by Vitest unit tests and Playwright end-to-end tests, wired into GitHub Actions CI and containerised with a multi-stage Dockerfile and a docker-compose Postgres stack.",
+      decisions:
+        "The rule throughout was to keep anything that touches money or trust on the server. Prices, shipping and coupon discounts are recomputed at checkout from the database — the client's bag is never trusted — and every admin action re-checks the role rather than relying on the page guard alone, so a direct request can't slip through. The AI summary is cached in the database and only regenerated when the review count changes, so the model is called at most once per new review instead of on every page view.",
+      learned:
+        "As much as the features, this was about the discipline around them — unit-testing the money path, driving the real flows with Playwright, and getting a Prisma and Postgres app onto Vercel with a self-seeding build. It reinforced a security-first instinct for commerce: assume the client is hostile, keep pricing and authorization server-authoritative, and lock the admin behind a secret so a public demo stays safe. Adding one well-scoped, cached LLM feature also showed how to bring AI into a product without it becoming a cost or latency liability.",
+    },
+  },
+  {
+    id: "ai-dungeon-master",
+    number: "02",
     title: "Dungeon Master",
     description:
       "A stateful, tool-using AI agent built around the AI-engineering skills that transfer to production: tool/function calling, grounding a model so it can't hallucinate outcomes, and — the hard part — evaluating a non-deterministic agent. Claude narrates while a deterministic Python engine owns the rules, dice and state, and a real eval harness pairs deterministic objective checks with an LLM-as-judge. No live demo yet.",
@@ -76,7 +124,7 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio-v2",
-    number: "02",
+    number: "03",
     title: "Marcus Henri Studio",
     description:
       "A design-led second portfolio built under my studio brand, Marcus Henri. One fixed viewport, no scrolling — featuring a raw WebGL noise shader, generative Canvas 2D artwork, and a runtime-switchable background.",
@@ -103,7 +151,7 @@ export const projects: Project[] = [
   },
   {
     id: "poe-professor",
-    number: "03",
+    number: "04",
     title: "PoEProfessor",
     description:
       "Path of Exile 2's first AI powered companion app — currently being actively developed. Features a build guide generator, interactive passive skill tree visualiser, and a companion feature which uses an expertly hand-written PoE2 knowledge base. Live demo available on request.",
@@ -133,7 +181,7 @@ export const projects: Project[] = [
   },
   {
     id: "taskflow",
-    number: "04",
+    number: "05",
     title: "TaskFlow",
     description: "A real-time collaborative task manager built with Next.js, TypeScript, Socket.io and PostgreSQL. Features drag and drop, live activity feeds, and multi-user collaboration.",
     tags: ["Next.js", "TypeScript", "Node.js", "Socket.io", "PostgreSQL", "Prisma"],
@@ -157,7 +205,7 @@ export const projects: Project[] = [
   },
   {
     id: "mmo",
-    number: "05",
+    number: "06",
     title: "ARPG-MMO (in development)",
     description:
       "An ambitious solo project I'm using to push my AI-assisted development workflow as far as it will go — building a full ARPG-MMO in Unreal Engine 5.8 to see how far AI can take one developer. Under the hood it's real systems engineering: data-driven C++ architecture, a FastAPI and PostgreSQL persistence service consumed in-engine, and networked movement with client-side prediction. Private repository but can give live demo on request.",
