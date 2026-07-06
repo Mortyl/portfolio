@@ -6,7 +6,7 @@ export const siteConfig = {
   role: "Full stack developer",
   location: "UK",
   email: "marcusortyl@gmail.com",
-  tagline: "Building interfaces that feel as good as they look.",
+  tagline: "Building software that feels as good as it looks.",
   subheading:
     "Hi I'm Marcus, a full-stack web developer with a sharp eye for detail and a bias for clean code.",
   description:
@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     id: "ai-dungeon-master",
     number: "01",
-    title: "AI Dungeon Master",
+    title: "Dungeon Master",
     description:
       "A stateful, tool-using AI agent built around the AI-engineering skills that transfer to production: tool/function calling, grounding a model so it can't hallucinate outcomes, and — the hard part — evaluating a non-deterministic agent. Claude narrates while a deterministic Python engine owns the rules, dice and state, and a real eval harness pairs deterministic objective checks with an LLM-as-judge. No live demo yet.",
     tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Anthropic", "Pydantic", "Docker"],
