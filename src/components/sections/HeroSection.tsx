@@ -11,13 +11,13 @@ export default function HeroSection() {
 
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight mb-6 dark:text-[#f0ede6]">
               Building{" "}
-              <span className="relative after:absolute after:bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-accent">interfaces</span>
+              <span className="relative after:absolute after:bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-accent">software</span>
               <br />
               <em className="text-muted dark:text-[#666] not-italic font-serif">
-                that feel as good
+                that feels as good
               </em>
               <br />
-              as they look.
+              as it looks.
             </h1>
 
             <p className="text-base font-medium mb-8 tracking-wide dark:text-[#c8c5be]">
