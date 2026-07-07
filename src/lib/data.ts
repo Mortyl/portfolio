@@ -51,8 +51,52 @@ export const featuredStack = ["Next.js", "TypeScript/Javascript", "React", "Node
 
 export const projects: Project[] = [
   {
-    id: "vela",
+    id: "capstan",
     number: "01",
+    title: "Capstan",
+    description:
+      "A multi-tenant AI customer-support SaaS, live in production. Teams upload help docs, customers write in through an embeddable widget or public API, and Claude drafts grounded replies with per-claim citations — reviewed and sent by a human. Includes Stripe subscription billing, durable background jobs, and an eval harness for the AI core. Live demo available.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "pgvector",
+      "Prisma",
+      "Anthropic",
+      "RAG",
+      "Stripe",
+      "Inngest",
+      "Auth.js",
+      "Vitest",
+      "Playwright",
+      "Docker",
+      "Vercel",
+    ],
+    image: undefined,
+    images: [
+      "/images/capstan/landing.png",
+      "/images/capstan/dashboard.png",
+      "/images/capstan/knowledge.png",
+      "/images/capstan/conversation.png",
+    ],
+    url: "https://getcapstan.vercel.app",
+    githubUrl: "https://github.com/Mortyl/helm",
+    caseStudy: {
+      overview:
+        "Capstan is a B2B AI support co-pilot, live at getcapstan.vercel.app. A company creates a workspace, invites teammates with owner, admin, or agent roles, and uploads its help docs — which are chunked, embedded, and indexed into Postgres with pgvector by durable background jobs. Customer questions arrive through a one-line embeddable widget or an org-scoped REST API; for each one, Capstan retrieves the most relevant passages and has Claude draft a reply that cites the exact source chunks it used, with a retrieval-confidence score. A human agent reviews, edits, and sends every reply. Around that core sits a full SaaS shell: Stripe subscriptions with plan-gated limits, an analytics dashboard, rate limiting, and an evaluation harness for the AI pipeline — all deployed on Vercel and Neon with CI.",
+      problem:
+        "Vela covered commerce, but it left the SaaS-specific engineering undemonstrated: multi-tenancy, subscription billing, background job infrastructure, and a production-shaped AI feature rather than a bolt-on. The AI part has a specific failure mode I wanted to engineer against — support bots that answer confidently whether or not they actually know. And LLM features are notoriously hard to test, so the project needed a real answer to 'how do you know it works?' beyond clicking around.",
+      approach:
+        "Multi-tenancy is hand-rolled rather than delegated to a hosted auth product, because it is the point: organizations, memberships, and roles in Prisma, with every query scoped by organization and every server action re-checking membership and role. The AI pipeline runs as durable Inngest steps — heading-aware chunking, Voyage embeddings into pgvector, then retrieval, a confidence guardrail, and a Claude call constrained to structured JSON that must map its claims onto numbered source chunks. The public surface is treated as hostile: hashed API keys in secret and publishable variants, per-conversation access tokens so a widget key can never enumerate other customers' conversations, and Postgres-backed rate limiting. Billing is Stripe Checkout and the Customer Portal, synced through signature-verified webhooks with an idempotency ledger.",
+      decisions:
+        "The defining decision is that the AI escalates instead of guessing: below a similarity threshold the question goes straight to a human before any LLM call, and the model can also flag its own sources as insufficient — turning hallucination from an embarrassment into a routed workflow. Tenant isolation returns 404 rather than 403 for other orgs' resources, so the API never leaks what exists. Webhook idempotency uses event ids as a primary key — Stripe's at-least-once delivery can never double-apply a plan change. And the eval harness splits what has a right answer from what is taste: retrieval hit-rate on a golden question set and guardrail behaviour are hard CI assertions, while citation quality and LLM-judged groundedness run advisory.",
+      learned:
+        "This project consolidated what production AI engineering actually involves beyond the model call: retrieval quality measured with evals rather than vibes, guardrails that fail toward humans, and citations as a first-class product feature rather than an afterthought. On the SaaS side, it was a masterclass in server-authoritative thinking — entitlements, roles, and tenant boundaries all enforced at the data layer — and in operational plumbing: idempotent webhooks, durable job retries with idempotent writes, and a deploy pipeline that migrates the database before every build. It also sharpened judgement about real-world API constraints, from embedding rate limits to designing key formats that are safe to embed in a customer's page.",
+    },
+  },
+  {
+    id: "vela",
+    number: "02",
     title: "Vela",
     description:
       "A complete fashion e-commerce store — catalogue with colour and size variants and live stock, cart, Stripe checkout, customer accounts, and a role-gated admin back-office. Rounded out with reviews, coupons, AI-written summaries, a full test suite, CI, and a Dockerised Postgres deploy. Live demo available.",
@@ -100,7 +144,7 @@ export const projects: Project[] = [
   },
   {
     id: "ai-dungeon-master",
-    number: "02",
+    number: "03",
     title: "Dungeon Master",
     description:
       "A stateful, tool-using AI agent built around the AI-engineering skills that transfer to production: tool/function calling, grounding a model so it can't hallucinate outcomes, and — the hard part — evaluating a non-deterministic agent. Claude narrates while a deterministic Python engine owns the rules, dice and state, and a real eval harness pairs deterministic objective checks with an LLM-as-judge. No live demo yet.",
@@ -124,7 +168,7 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio-v2",
-    number: "03",
+    number: "04",
     title: "Marcus Henri Studio",
     description:
       "A design-led second portfolio built under my studio brand, Marcus Henri. One fixed viewport, no scrolling — featuring a raw WebGL noise shader, generative Canvas 2D artwork, and a runtime-switchable background.",
@@ -151,7 +195,7 @@ export const projects: Project[] = [
   },
   {
     id: "poe-professor",
-    number: "04",
+    number: "05",
     title: "PoEProfessor",
     description:
       "Path of Exile 2's first AI powered companion app — currently being actively developed. Features a build guide generator, interactive passive skill tree visualiser, and a companion feature which uses an expertly hand-written PoE2 knowledge base. Live demo available on request.",
@@ -181,7 +225,7 @@ export const projects: Project[] = [
   },
   {
     id: "taskflow",
-    number: "05",
+    number: "06",
     title: "TaskFlow",
     description: "A real-time collaborative task manager built with Next.js, TypeScript, Socket.io and PostgreSQL. Features drag and drop, live activity feeds, and multi-user collaboration.",
     tags: ["Next.js", "TypeScript", "Node.js", "Socket.io", "PostgreSQL", "Prisma"],
@@ -205,7 +249,7 @@ export const projects: Project[] = [
   },
   {
     id: "mmo",
-    number: "06",
+    number: "07",
     title: "ARPG-MMO (in development)",
     description:
       "An ambitious solo project I'm using to push my AI-assisted development workflow as far as it will go — building a full ARPG-MMO in Unreal Engine 5.8 to see how far AI can take one developer. Under the hood it's real systems engineering: data-driven C++ architecture, a FastAPI and PostgreSQL persistence service consumed in-engine, and networked movement with client-side prediction. Private repository but can give live demo on request.",

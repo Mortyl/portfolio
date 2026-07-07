@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazily initialised so the app can build without secrets present
+// (local builds, CI) — the key is only needed when a message is sent.
+let resendClient: Resend | undefined;
+function getResend() {
+  resendClient ??= new Resend(process.env.RESEND_API_KEY);
+  return resendClient;
+}
 
 // Length caps — keeps Resend payloads sane and prevents trivial DoS via
 // megabyte messages. Generous enough that no legitimate enquiry will hit them.
@@ -71,7 +77,7 @@ export async function POST(req: Request) {
       );
     }
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: "Portfolio Contact <contact@marcusortyl.dev>",
       to: process.env.CONTACT_EMAIL!,
       replyTo: email,
