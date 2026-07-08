@@ -85,7 +85,7 @@ export const projects: Project[] = [
       overview:
         "Capstan is a B2B AI support co-pilot, live at getcapstan.vercel.app. A company creates a workspace, invites teammates with owner, admin, or agent roles, and uploads its help docs, which are chunked, embedded, and indexed into Postgres with pgvector by durable background jobs. Customer questions arrive through a one-line embeddable widget or an org-scoped REST API; for each one, Capstan retrieves the most relevant passages and has Claude draft a reply that cites the exact source chunks it used, with a retrieval-confidence score. A human agent reviews, edits, and sends every reply. Around that core sits a full SaaS shell: Stripe subscriptions with plan-gated limits, an analytics dashboard, rate limiting, and an evaluation harness for the AI pipeline, all deployed on Vercel and Neon with CI.",
       problem:
-        "Vela covered commerce, but it left the SaaS-specific engineering undemonstrated: multi-tenancy, subscription billing, background job infrastructure, and a production-shaped AI feature rather than a bolt-on. The AI part has a specific failure mode I wanted to engineer against: support bots that answer confidently whether or not they actually know. And LLM features are notoriously hard to test, so the project needed a real answer to 'how do you know it works?' beyond clicking around.",
+        "Selvik covered commerce, but it left the SaaS-specific engineering undemonstrated: multi-tenancy, subscription billing, background job infrastructure, and a production-shaped AI feature rather than a bolt-on. The AI part has a specific failure mode I wanted to engineer against: support bots that answer confidently whether or not they actually know. And LLM features are notoriously hard to test, so the project needed a real answer to 'how do you know it works?' beyond clicking around.",
       approach:
         "Multi-tenancy is hand-rolled rather than delegated to a hosted auth product, because it is the point: organizations, memberships, and roles in Prisma, with every query scoped by organization and every server action re-checking membership and role. The AI pipeline runs as durable Inngest steps: heading-aware chunking, Voyage embeddings into pgvector, then retrieval, a confidence guardrail, and a Claude call constrained to structured JSON that must map its claims onto numbered source chunks. The public surface is treated as hostile: hashed API keys in secret and publishable variants, per-conversation access tokens so a widget key can never enumerate other customers' conversations, and Postgres-backed rate limiting. Billing is Stripe Checkout and the Customer Portal, synced through signature-verified webhooks with an idempotency ledger.",
       decisions:
@@ -95,9 +95,9 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "vela",
+    id: "selvik",
     number: "02",
-    title: "Vela",
+    title: "Selvik",
     description:
       "A complete fashion e-commerce store: a catalogue with colour and size variants and live stock, cart, Stripe checkout, customer accounts, and a role-gated admin back-office. Rounded out with reviews, coupons, AI-written summaries, a full test suite, CI, and a Dockerised Postgres deploy. Live demo available.",
     tags: [
@@ -118,20 +118,20 @@ export const projects: Project[] = [
     ],
     image: undefined,
     images: [
-      "/images/vela/home.jpg",
-      "/images/vela/shop.jpg",
-      "/images/vela/product.jpg",
-      "/images/vela/cart.jpg",
-      "/images/vela/checkout.jpg",
-      "/images/vela/admin-dashboard.jpg",
-      "/images/vela/admin-products.jpg",
-      "/images/vela/admin-orders.jpg",
+      "/images/selvik/home.jpg",
+      "/images/selvik/shop.jpg",
+      "/images/selvik/product.jpg",
+      "/images/selvik/cart.jpg",
+      "/images/selvik/checkout.jpg",
+      "/images/selvik/admin-dashboard.jpg",
+      "/images/selvik/admin-products.jpg",
+      "/images/selvik/admin-orders.jpg",
     ],
-    url: "https://ecommercestore-174h-gray.vercel.app",
-    githubUrl: "https://github.com/Mortyl/ecommercestore",
+    url: "https://selvik.vercel.app",
+    githubUrl: "https://github.com/Mortyl/selvik",
     caseStudy: {
       overview:
-        "Vela is a full fashion storefront built to mirror a real commercial app end to end: a catalogue with colour and size variants and live stock, a cart, Stripe Checkout, customer accounts with order history, and a role-gated admin back-office for orders, inventory, products and coupons. On top of that it ships verified-purchase reviews, discount codes, AI-written review summaries, a unit and end-to-end test suite, CI, and a Dockerised Postgres deployment. It runs on Next.js 16 and TypeScript with Prisma, and is live on Vercel.",
+        "Selvik is a full fashion storefront built to mirror a real commercial app end to end: a catalogue with colour and size variants and live stock, a cart, Stripe Checkout, customer accounts with order history, and a role-gated admin back-office for orders, inventory, products and coupons. On top of that it ships verified-purchase reviews, discount codes, AI-written review summaries, a unit and end-to-end test suite, CI, and a Dockerised Postgres deployment. It runs on Next.js 16 and TypeScript with Prisma, and is live on Vercel.",
       problem:
         "I wanted one project that shows the full surface of a real e-commerce build rather than a toy shop: money handling, authentication and authorization, an admin surface, and the testing and deployment discipline around it. The parts that matter are the ones easy to fake: prices that can't be tampered with from the client, an admin that visitors genuinely can't reach, and a checkout that stays consistent even if the customer never lands back on the success page.",
       approach:
