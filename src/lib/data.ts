@@ -80,7 +80,7 @@ export const projects: Project[] = [
       "/images/capstan/conversation.png",
     ],
     url: "https://getcapstan.vercel.app",
-    githubUrl: "https://github.com/Mortyl/helm",
+    githubUrl: "https://github.com/Mortyl/capstan",
     caseStudy: {
       overview:
         "Capstan is a B2B AI support co-pilot, live at getcapstan.vercel.app. A company creates a workspace, invites teammates with owner, admin, or agent roles, and uploads its help docs, which are chunked, embedded, and indexed into Postgres with pgvector by durable background jobs. Customer questions arrive through a one-line embeddable widget or an org-scoped REST API; for each one, Capstan retrieves the most relevant passages and has Claude draft a reply that cites the exact source chunks it used, with a retrieval-confidence score. A human agent reviews, edits, and sends every reply. Around that core sits a full SaaS shell: Stripe subscriptions with plan-gated limits, an analytics dashboard, rate limiting, and an evaluation harness for the AI pipeline, all deployed on Vercel and Neon with CI.",
