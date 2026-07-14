@@ -167,8 +167,46 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "portfolio-v2",
+    id: "marcushenri-ai",
     number: "04",
+    title: "Marcus Henri AI",
+    description:
+      "The marketing site for my own AI consultancy, designed and built end to end. A single scrolling editorial landing page in Next.js 16 and Tailwind 4, with a custom cream-and-ink design system, full-bleed section bands, a Resend-backed contact form via server actions, and generated Open Graph images. Live at ai.marcushenri.studio.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind 4",
+      "Server Actions",
+      "Resend",
+      "Vercel",
+    ],
+    image: undefined,
+    images: [
+      "/images/marcushenri-ai/hero.png",
+      "/images/marcushenri-ai/problem.png",
+      "/images/marcushenri-ai/use-cases.png",
+      "/images/marcushenri-ai/services.png",
+      "/images/marcushenri-ai/case-study.png",
+      "/images/marcushenri-ai/process.png",
+    ],
+    url: "https://ai.marcushenri.studio",
+    githubUrl: undefined,
+    caseStudy: {
+      overview:
+        "Marcus Henri AI is the marketing site for my own AI consultancy, live at ai.marcushenri.studio. It is a single scrolling landing page that carries a visitor from the core problem, that most business AI never pays off, through what I can build, the services and pricing, a real case study, and a contact form, all under a MarcusHenri.AI brand. It is built in Next.js 16 and React 19 with Tailwind 4, styled with a custom editorial design system: a warm cream and ink palette, Space Grotesk over Inter, hairline rules, and full-bleed tinted section bands. The contact form is a server action backed by Resend, and the page ships generated Open Graph images and Vercel Analytics.",
+      problem:
+        "I had started taking on AI consulting work but had nowhere to send a prospective client that explained what I do and why it is different. Generic AI consultants sell slide decks, so I wanted a site that made the opposite case, that I build and ship the systems I recommend, positioned honestly around grounded answers, measured accuracy, and a human in the loop. The harder part was not the code but the message: turning a vague 'I do AI' into a clear problem, a set of concrete use cases, transparent pricing, and proof, without it reading like every other consultancy landing page.",
+      approach:
+        "I designed the whole thing as one editorial page rather than a multi-route site, so the narrative reads top to bottom in a single scroll. The build is Next.js 16 with the App Router and React 19, styled entirely through Tailwind 4's CSS-first theme in globals.css with no config file, defining the cream, ink, accent and rule tokens once and reusing them everywhere. The alternating full-bleed section bands and viewport-wide hairline separators are done with a pseudo-element trick, a viewport-wide ::before centered under a column-width content area, so the colour spans the full width while the text stays in the reading column. The contact form posts to a server action that sends through Resend, and the page generates its own Open Graph share image with the Next image-response API. Each section's content is authored as typed data arrays, so problems, use cases, services and FAQs are edited as data rather than markup.",
+      decisions:
+        "The defining decisions were about positioning as much as build. I led with the problem, an MIT finding that most enterprise AI pilots deliver no return, rather than with myself, framed the offer around trust (grounded, cited, measured, human in the loop) to separate it from generic AI hype, and put real pricing on the page because vague 'contact us' pricing is exactly what I distrust as a buyer. Technically I chose a single editorial page over a heavier multi-page site because the goal is one clear read, and I kept the whole thing static and dependency-light, no CMS and no UI library, just typed content and Tailwind tokens, so it loads fast and stays trivial to maintain. The case study points straight at Capstan, my live AI SaaS, so the site proves its own claim by linking to a working product.",
+      learned:
+        "This sharpened a different muscle from my app projects: distilling a service into a story a non-technical buyer can follow in one scroll, and writing copy that sells without overpromising. On the build side it deepened my Tailwind 4 CSS-first workflow, especially the full-bleed band and hairline-rule techniques for an editorial layout that survives a phone screen with almost no media queries, and it was good practice wiring a real contact path (a server action plus Resend) and a generated Open Graph image. Mostly it reinforced that presentation is part of engineering: the same care that goes into a system has to go into how you explain it, or no one gets as far as the system.",
+    },
+  },
+  {
+    id: "portfolio-v2",
+    number: "05",
     title: "Marcus Henri Studio",
     description:
       "A design-led second portfolio built under my studio brand, Marcus Henri. One fixed viewport, no scrolling, featuring a raw WebGL noise shader, generative Canvas 2D artwork, and a runtime-switchable background.",
@@ -195,7 +233,7 @@ export const projects: Project[] = [
   },
   {
     id: "poe-professor",
-    number: "05",
+    number: "06",
     title: "PoEProfessor",
     description:
       "Path of Exile 2's first AI powered companion app, currently in active development. Features a build guide generator, an interactive passive skill tree visualiser, and a companion feature which uses an expertly hand-written PoE2 knowledge base. Live demo available on request.",
@@ -225,7 +263,7 @@ export const projects: Project[] = [
   },
   {
     id: "taskflow",
-    number: "06",
+    number: "07",
     title: "TaskFlow",
     description: "A real-time collaborative task manager built with Next.js, TypeScript, Socket.io and PostgreSQL. Features drag and drop, live activity feeds, and multi-user collaboration.",
     tags: ["Next.js", "TypeScript", "Node.js", "Socket.io", "PostgreSQL", "Prisma"],
@@ -249,7 +287,7 @@ export const projects: Project[] = [
   },
   {
     id: "mmo",
-    number: "07",
+    number: "08",
     title: "ARPG-MMO (in development)",
     description:
       "An ambitious solo project I'm using to push my AI-assisted development workflow as far as it will go, building a full ARPG-MMO in Unreal Engine 5.8 to see how far AI can take one developer. Under the hood it's real systems engineering: data-driven C++ architecture, a FastAPI and PostgreSQL persistence service consumed in-engine, and networked movement with client-side prediction. Private repository, but a live demo is available on request.",
