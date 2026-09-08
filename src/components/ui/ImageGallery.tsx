@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 function Chevron({ direction, size = 16 }: { direction: "left" | "right"; size?: number }) {
@@ -29,6 +29,30 @@ function Chevron({ direction, size = 16 }: { direction: "left" | "right"; size?:
 export default function ImageGallery({ images, title }: { images: string[]; title: string }) {
     const [current, setCurrent] = useState(0);
     const [lightbox, setLightbox] = useState(false);
+
+    // Keyboard control while the lightbox is open: arrows navigate, Escape closes.
+    // Listener is only attached while it's open, and torn down on close/unmount.
+    useEffect(() => {
+        if (!lightbox) return;
+
+        function onKeyDown(e: KeyboardEvent) {
+            if (e.key === "Escape") {
+                setLightbox(false);
+                return;
+            }
+            if (images.length < 2) return;
+            if (e.key === "ArrowLeft") {
+                e.preventDefault(); // don't scroll the page behind the overlay
+                setCurrent((prev) => (prev - 1 + images.length) % images.length);
+            } else if (e.key === "ArrowRight") {
+                e.preventDefault();
+                setCurrent((prev) => (prev + 1) % images.length);
+            }
+        }
+
+        window.addEventListener("keydown", onKeyDown);
+        return () => window.removeEventListener("keydown", onKeyDown);
+    }, [lightbox, images.length]);
 
     return (
         <>
@@ -106,7 +130,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                         type="button"
                         aria-label="Close image viewer"
                         onClick={() => setLightbox(false)}
-                        className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl transition-colors"
+                        className="absolute top-4 right-4 z-10 text-white/70 hover:text-white text-2xl transition-colors"
                     >
                         <span aria-hidden="true">✕</span>
                     </button>
@@ -120,7 +144,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev - 1 + images.length) % images.length);
                                 }}
-                                className="group/nav absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-sm border border-white/15 bg-white/5 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/40 hover:bg-white/10 active:scale-95 transition-all duration-200"
+                                className="group/nav absolute left-4 top-1/2 z-10 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-sm border border-white/15 bg-white/5 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/40 hover:bg-white/10 active:scale-95 transition-all duration-200"
                             >
                                 <Chevron direction="left" size={18} />
                             </button>
@@ -131,7 +155,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                                     e.stopPropagation();
                                     setCurrent((prev) => (prev + 1) % images.length);
                                 }}
-                                className="group/nav absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-sm border border-white/15 bg-white/5 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/40 hover:bg-white/10 active:scale-95 transition-all duration-200"
+                                className="group/nav absolute right-4 top-1/2 z-10 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-sm border border-white/15 bg-white/5 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/40 hover:bg-white/10 active:scale-95 transition-all duration-200"
                             >
                                 <Chevron direction="right" size={18} />
                             </button>
@@ -152,7 +176,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                     </div>
 
                     {images.length > 1 && (
-                        <div className="absolute bottom-4 flex gap-1.5">
+                        <div className="absolute bottom-4 z-10 flex gap-1.5">
                             {images.map((_, i) => (
                                 <button
                                     key={i}
